@@ -1,4 +1,4 @@
-# SauceDemo Selenium Automation project
+# SauceDemo Selenium Automation Project
 
 ## Description:
 SauceDemo is a testing website. This project is the result of a three-month intensive QA course. 
@@ -24,14 +24,11 @@ The manual test documentation is included in the project as Excel files.
 
 Clone the repository in IDE terminal:
 
-
 ```bash
-git clone https://github.com/AleksandraPrlincevic/projekatITBootcamp.git
+git clone https://github.com/AleksandraPrlincevic/saucedemo-selenium-java-ui-tests.git
 ```
 ## How to run:
 Open the project in IntelliJ IDEA and run tests directly from the IDE.
-
-## Framework Walkthrough
 
 ## Project Structure
 * `base` - base classes: `BasePage` (parent for all Page Objects, handles WebDriver/wait setup)
