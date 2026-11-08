@@ -23,7 +23,6 @@ public class CartTest extends BaseTest {
     String itemPrice;
     String itemName2;
     String itemPrice2;
-    private List<WebElement> chosenRandomItems;
 
     @BeforeMethod
     public void testSetUp() throws InterruptedException {
@@ -77,7 +76,11 @@ public class CartTest extends BaseTest {
            Assert.assertTrue(headerPage.getPageTitle().contains("Overview"));
            Assert.assertTrue(checkoutStepTwoPage.getItemNamesText().contains(itemName) && checkoutStepTwoPage.getItemNamesText().contains(itemName2));
            Assert.assertTrue(checkoutStepTwoPage.getItemPricesText().contains(itemPrice) && checkoutStepTwoPage.getItemPricesText().contains(itemPrice2));
-           //Assert.assertTrue(checkoutStepTwoPage.getItemPriceFromTotalText().equals("$" + Double.parseDouble(itemPrice) + Double.parseDouble(itemPrice2)));
+        double expectedTotal = Double.parseDouble(itemPrice.replace("$", ""))
+                + Double.parseDouble(itemPrice2.replace("$", ""));
+        double actualTotal = Double.parseDouble(
+                checkoutStepTwoPage.getItemPriceFromTotalText().replace("Item total: $", ""));
+        Assert.assertEquals(actualTotal, expectedTotal, 0.001);
         checkoutStepTwoPage.clickFinishButton();
             Assert.assertTrue(checkoutCompletePage.getCorrectIcon().isDisplayed());
             Assert.assertTrue(headerPage.getPageTitle().contains("Complete"));
@@ -87,12 +90,11 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    public void canCheckoutWithEmptyCart() {  // Test pada jer mozemo da kliknemo na Checkout i on nas vodi na CheckoutStepTwoPage, iako ne bi smelo jer je korpa prazna
+    public void canNotCheckoutWithEmptyCart() {  // Test pada jer mozemo da kliknemo na Checkout i on nas vodi na CheckoutStepOnePage, iako ne bi smelo jer je korpa prazna
         cartPage.removeAllItemsFromCart();
         Assert.assertFalse(headerPage.isCartBadgeVisible());
         cartPage.clickCheckoutButton();
-        Assert.assertTrue(headerPage.getPageTitle().contains("Overview"));
-        Assert.assertFalse(checkoutStepOnePage.isCheckoutInfoContainer());
+        Assert.assertTrue(headerPage.getPageTitle().contains("Cart"), "User left the Cart page with an empty cart and is on: " + headerPage.getPageTitle());
     }
 
     @AfterMethod

@@ -58,7 +58,6 @@ public class AddItemsToCartTest extends BaseTest {
 
     @Test(priority = 2)
     public void canAddThreeItemsFromInventoryPage() throws InterruptedException {
-        List<WebElement> chosenRandomItems = new ArrayList<>();
            Assert.assertFalse(inventoryPage.getInventoryItems().isEmpty());
            Assert.assertFalse(headerPage.isCartBadgeVisible());
 
@@ -68,13 +67,13 @@ public class AddItemsToCartTest extends BaseTest {
         item.clickAddToCartButton();
 
         InventoryItemComponent item2 = inventoryPage.getInventoryItemComponent(chosenRandomItems);
-        String itemName2 = item.getItemName();
-        String itemPrice2 =item.getItemPrice();
+        String itemName2 = item2.getItemName();
+        String itemPrice2 =item2.getItemPrice();
         item2.clickAddToCartButton();
 
         InventoryItemComponent item3 = inventoryPage.getInventoryItemComponent(chosenRandomItems);
-        String itemName3 = item.getItemName();
-        String itemPrice3 =item.getItemPrice();
+        String itemName3 = item3.getItemName();
+        String itemPrice3 =item3.getItemPrice();
         item3.clickAddToCartButton();
 
            Assert.assertTrue(headerPage.isCartBadgeVisible());
