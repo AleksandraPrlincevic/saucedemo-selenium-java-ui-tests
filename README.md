@@ -5,13 +5,19 @@ SauceDemo is a testing website. This project is the result of a three-month inte
 After completing manual testing and bug reporting, I selected several test cases for automation.
 The manual test documentation is included in the project as Excel files.
 
+A later, more advanced version of this project, built with **Cypress** and **JavaScript**
+(more tests, sorting and regression coverage, custom commands and fixtures) is available here:
+[Cypress/JavaScript version of this project](https://github.com/AleksandraPrlincevic/saucedemo-cypress-js-ui-tests)
+
 
 ## Tech Stack:
  - Java (OpenJDK 26)
  - IntelliJ IDEA 2026.1
  - Selenium WebDriver 4.43.0
+ - WebDriverManager (Boni Garcia) – automatic browser driver management
  - TestNG 7.12.0
  - Maven
+ - Page Object Model with Selenium PageFactory
  - Firefox browser
  - OS: Windows 11 Pro
 
@@ -31,8 +37,9 @@ git clone https://github.com/AleksandraPrlincevic/saucedemo-selenium-java-ui-tes
 Open the project in IntelliJ IDEA and run tests directly from the IDE.
 
 ## Project Structure
-* `base` - base classes: `BasePage` (parent for all Page Objects, handles WebDriver/wait setup)
-  and `BaseTest` (parent for test classes, initializes Page Object instances and WebDriver setup)
+* `base` - base classes: `BasePage` (parent for all Page Objects, initializes elements and
+  explicit wait) and `BaseTest` (parent for test classes, declares Page Object fields and
+  sets up the browser driver)
 * `pages` - Page Object Model classes for each page of the site
 * `components` — `Header` (reusable, shared across pages) and `InventoryItemComponent`
 * `tests` - test classes
